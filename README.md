@@ -5,6 +5,7 @@ This component is a sample code to edit or modify the DSR using python3
 
 
 ```bash
+cd ~/robocomp/components/
 git clone https://github.com/rahulkatiyar19955/AGMagentSampleCode.git
 cd AGMagentSampleCode
 mkdir build
