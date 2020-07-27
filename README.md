@@ -55,6 +55,10 @@ Ice.Trace.Protocol=0
 ```
 
 ### Starting the component
+Before starting the component make sure AGMExecutive & rcnode is running.
+
+To know how to start these go to this [link..](startingAGM.md)
+
 ```
 cd ..
 ```
