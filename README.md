@@ -87,3 +87,15 @@ make sure $ROBOCOMP environment variable is set.
 `/usr/local/share/agm/AGGL.py`\
 you can see these function inside the **AGMGraph class**.
 
+***
+```
+        self.addLink(1,3200)
+        self.addNode(5200,'object2')
+        self.addLink(3,5200)
+        self.updatingDSR()
+```
+* In this sample code we have added a link between a object with id(3200) and 
+robot with id(1)
+* adding a node with id(5200) with name 'object2'
+* adding another link between room with id(3) and newly created object with id(5200)
+* after creating all this we update all these changes to actual DSR using the updaingDSR function. 
