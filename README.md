@@ -61,14 +61,20 @@ Before starting the component make sure AGMExecutive & rcnode is running.
 
 To know how to start these go to this [link..](startingAGM.md)
 
+You must have AGM installed in your machine.\
+Go to this link to install AGM [AGM installation](https://github.com/ljmanso/AGM) clone and install this repo in your home directory
+```buildoutcfg
+cd ~
+git clone https://github.com/ljmanso/AGM
+cd AGM
+sh compile.sh
 ```
-cd ..
+
+
+
+#### running the component
 ```
-or
-```
-cd <path where you have cloned this repo>/AGMagentSampleCode
-```
-```bash
+cd ~/robocomp/components/AGMagentSampleCode/AGMagentSampleCode
 python3 src/sampleCode.py etc/config
 ```
 if you get error as\
