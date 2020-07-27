@@ -1,7 +1,17 @@
 # sampleCode
 This component is a sample code to edit or modify the DSR using python3
 
-## How to make a AGMAgent component
+## How to use this AGMAgent component
+
+
+```bash
+git clone https://github.com/rahulkatiyar19955/AGMagentSampleCode.git
+cd AGMagentSampleCode
+mkdir build
+cd build
+cmake ..
+make
+```
 
 sampleCode.cdsl
 ```
@@ -17,7 +27,8 @@ Component sampleCode
 ```
 `make sure the options agmagent will be there.`
 
-You can clone this repository or make your own component.
+
+
 
 ## Configuration parameters
 As any other component, *sampleCode* needs a configuration file to start. In
@@ -43,21 +54,23 @@ Ice.Trace.Network=0
 Ice.Trace.Protocol=0
 ```
 
-## Starting the component
-Before starting the component make sure the rcnode, AGMExecutive and RCIS is running.\
-To know how to start these component use this [link]().
-
-
-Go to the component path using the following command
+### Starting the component
 ```
-cd <sampleCode's path> 
+cd ..
 ```
-
-After editing the new config file we can run the component:
-
+or
 ```
+cd <path where you have cloned this repo>/AGMagentSampleCode
+```
+```bash
 python3 src/sampleCode.py etc/config
 ```
+if you get error as\
+`The executive is probably not running, waiting for first AGM model publication...`
+\
+then make sure AGMExecutive is running.
+
+
 ## About the sampleCode
 make sure $ROBOCOMP environment variable is set.
 * the function ***self.addNode()*** will add a node in the DSR.
