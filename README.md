@@ -1,5 +1,6 @@
 # sampleCode
-This component is a sample code to edit or modify the DSR using python3
+This component is a sample code to edit or modify the DSR using python3.\
+For video tutorial go to this [link..](https://youtu.be/PyZ87er1iRQ)
 
 ## How to use this AGMAgent component
 
