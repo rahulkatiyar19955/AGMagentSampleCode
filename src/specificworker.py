@@ -47,10 +47,14 @@ class SpecificWorker(GenericWorker):
         self.worldModel = AGMGraph()
         while not self.AGMinit():
             time.sleep(1)
-        self.addLink(1,3200)
-        self.addNode(5200,'object2')
-        self.addLink(3,5200)
+        self.addLink('1','3200')
+        self.addNode('5200','object2')
+        self.addLink('3','5200')
         self.updatingDSR()
+        time.sleep(5)
+        self.deleteLink('1','3200')
+        self.updatingDSR()
+
 
 
     def __del__(self):
@@ -77,24 +81,32 @@ class SpecificWorker(GenericWorker):
             print("The executive is probably not running, waiting for first AGM model publication...")
             return False
 
-    def addNode(self,id:int,stype:str):
+    def addNode(self,id: str,stype: str):
         attr = {'type': "nodeUnknow",
                 'name': "demo1"}
         self.worldModel.addNode(0,0,id,stype,attr)
 
 
-    def addLink(self,a:int,b:int):
+    def addLink(self,a: str,b: str):
         attr = {'type':"unknown",
                 'name':"demo"}
-        self.worldModel.addEdge(a,b,'interacting',attr)
+        self.worldModel.addEdge(a,b,'working',attr)
+
+    def deleteLink(self,a: str,b: str):
+        print(type(a),type(b))
+        numberOfLinksdeleted = self.worldModel.removeEdge(a,b)
+        print( str(numberOfLinksdeleted) + " links deleted")
 
     def updatingDSR(self):
         try:
             newModel = AGMModelConversion.fromInternalToIce(self.worldModel)
             self.agmexecutive_proxy.structuralChangeProposal(newModel, "component_name", "Log_fileName")
+            w = self.agmexecutive_proxy.getModel()
+            self.worldModel = AGMModelConversion.fromIceToInternal_model(w)
             print("AGM successfully updated")
         except:
             print("Exception moving in AGM")
+
 
     @QtCore.Slot()
     def compute(self):
@@ -126,7 +138,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to edgeUpdated method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_edgeUpdated(self, modification):
-    
+
         #
         # write your CODE here
         #
@@ -137,7 +149,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to edgesUpdated method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_edgesUpdated(self, modifications):
-    
+
         #
         # write your CODE here
         #
@@ -148,7 +160,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to selfEdgeAdded method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_selfEdgeAdded(self, nodeid, edgeType, attributes):
-    
+
         #
         # write your CODE here
         #
@@ -159,7 +171,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to selfEdgeDeleted method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_selfEdgeDeleted(self, nodeid, edgeType):
-    
+
         #
         # write your CODE here
         #
@@ -170,7 +182,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to structuralChange method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_structuralChange(self, w):
-    
+
         #
         # write your CODE here
         #
@@ -181,7 +193,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to symbolUpdated method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_symbolUpdated(self, modification):
-    
+
         #
         # write your CODE here
         #
@@ -192,7 +204,7 @@ class SpecificWorker(GenericWorker):
     # SUBSCRIPTION to symbolsUpdated method from AGMExecutiveTopic interface
     #
     def AGMExecutiveTopic_symbolsUpdated(self, modifications):
-    
+
         #
         # write your CODE here
         #
@@ -246,7 +258,7 @@ class SpecificWorker(GenericWorker):
     # IMPLEMENTATION of killAgent method from AGMCommonBehavior interface
     #
     def AGMCommonBehavior_killAgent(self):
-    
+
         #
         # write your CODE here
         #
@@ -307,4 +319,3 @@ class SpecificWorker(GenericWorker):
     # From the RoboCompAGMCommonBehavior you can use this types:
     # RoboCompAGMCommonBehavior.StateStruct
     # RoboCompAGMCommonBehavior.Parameter
-
