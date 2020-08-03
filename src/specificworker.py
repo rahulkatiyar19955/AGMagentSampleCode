@@ -48,11 +48,18 @@ class SpecificWorker(GenericWorker):
         while not self.AGMinit():
             time.sleep(1)
         self.addLink('1','3200')
-        self.addNode('5200','object2')
-        self.addLink('3','5200')
+        print("adding Link from id:1 -> id:3200")
+        self.agmexecutive_proxy.edgeUpdate()
         self.updatingDSR()
-        time.sleep(5)
-        self.deleteLink('1','3200')
+        time.sleep(2)
+
+        self.addNode('5200','object2')
+        print("adding Node(object2) with id:5200")
+        self.updatingDSR()
+        time.sleep(2)
+
+        self.addLink('3','5200')
+        print("adding Link from id:3 -> id:5200")
         self.updatingDSR()
 
 
@@ -86,7 +93,6 @@ class SpecificWorker(GenericWorker):
                 'name': "demo1"}
         self.worldModel.addNode(0,0,id,stype,attr)
 
-
     def addLink(self,a: str,b: str):
         attr = {'type':"unknown",
                 'name':"demo"}
@@ -96,6 +102,11 @@ class SpecificWorker(GenericWorker):
         print(type(a),type(b))
         numberOfLinksdeleted = self.worldModel.removeEdge(a,b)
         print( str(numberOfLinksdeleted) + " links deleted")
+
+    def updateLink(self,a: str,b: str):
+        attr = {'type':"unknown_change",
+                'name':"demo_change"}
+        self.worldModel.addEdge(a,b,'working',attr)
 
     def updatingDSR(self):
         try:

@@ -6,7 +6,7 @@ rcremoteserver
 ```
 * After the server is started start the rcmanagersimple using the command
 ```buildoutcfg
-cd ~/robocomp/components/AGMagentSampleCode/etc
+cd ~/robocomp/components/robocomp-examples/getting-started/python/AGM_Agent/etc
 rcmanagersimple deployment_sample.xml 
 ```
 
